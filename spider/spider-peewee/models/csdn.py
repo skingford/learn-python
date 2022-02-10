@@ -27,6 +27,7 @@ class Topic(BaseModel):
     jtl = FloatField(default=0.0)
     score = IntegerField(default=0)
     status = CharField()
+    last_answer_time = DateTimeField()
 
 
 class Answer(BaseModel):
@@ -34,7 +35,7 @@ class Answer(BaseModel):
     author = CharField()
     content = TextField(default="")
     create_time = DateTimeField()
-    parised_nums = IntegerField(default=0)  # 点赞数
+    praised_nums = IntegerField(default=0)  # 点赞数
 
 
 class Author(BaseModel):
