@@ -8,25 +8,28 @@ class BaseModel(Model):
         database = db
 
 
+# 设计数据表的时候有几个重要点一定要注意
+
 """
-1. char类型，设置最大长度，无法确定使用text
-2. 采集到数据先格式化处理
-3. default & null = True时可以不设置（默认为True）
+char类型， 要设置最大长度
+对于无法确定最大长度的字段，可以设置为Text
+设计表的时候 采集到的数据要尽量先做格式化处理
+default和null=True
 """
 
 
 class Topic(BaseModel):
     title = CharField()
-    content = TextField()
+    content = TextField(default="")
     id = IntegerField(primary_key=True)
     author = CharField()
     create_time = DateTimeField()
     answer_nums = IntegerField(default=0)
     click_nums = IntegerField(default=0)
-    parised_nums = IntegerField(default=0)
-    jtl = FloatField(default=0.0)
-    score = IntegerField(default=0)
-    status = CharField()
+    praised_nums = IntegerField(default=0)
+    jtl = FloatField(default=0.0)  # 结帖率
+    score = IntegerField(default=0)  # 赏分
+    status = CharField()  # 状态
     last_answer_time = DateTimeField()
 
 
@@ -41,12 +44,12 @@ class Answer(BaseModel):
 class Author(BaseModel):
     name = CharField()
     id = CharField(primary_key=True)
-    click_nums = IntegerField(default=0)
+    click_nums = IntegerField(default=0)  # 访问数
     original_nums = IntegerField(default=0)  # 原创数
-    forward_nums = IntegerField(default=0)
-    rate = IntegerField(default=-1)
+    forward_nums = IntegerField(default=0)  # 转发数
+    rate = IntegerField(default=-1)  # 排名
     answer_nums = IntegerField(default=0)  # 评论数
-    parised_nums = IntegerField(default=0)  # 点赞数
+    praised_nums = IntegerField(default=0)  # 获赞数
     desc = TextField(null=True)
     industry = CharField(null=True)
     location = CharField(null=True)
