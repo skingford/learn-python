@@ -9,6 +9,11 @@ pymysql = "*"
 requests = "*"
 selenium = "*"
 scrapy = "*"
+numpy = "*"
+sklearn = "*"
+matplotlib = "*"
+pandas = "*"
+seaborn = "*"
 
 [dev-packages]
 
