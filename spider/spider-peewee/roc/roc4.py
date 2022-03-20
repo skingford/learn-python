@@ -5,9 +5,9 @@ import numpy as np
 from scipy.interpolate import make_interp_spline
 
 r1 = pd.read_csv(
-    r"./副本脂肪肝统计数据.csv",
+    r"./有无肝纤维化统计.csv",
     header=None,
-    names=['初级医师诊断', '中级医师诊断', '高级医师诊断', 'AI诊断', '病理']
+    names=['AI', '高级医师', '中级医师', '初级', '病理']
 )
 
 
@@ -37,7 +37,7 @@ def ks(y, s1, s2, s3, s4):
     plt.plot(fpr3, tpr3, color="blue", lw=lw, alpha=0.8, label='Senior = %0.3f' % roc_auc3)
     plt.plot(fpr4, tpr4, color="lightgreen", lw=lw, alpha=0.8, label='AI = %0.3f' % roc_auc4)
 
-    plt.legend(loc='lower right', prop=Font)
+    plt.legend(loc='lower right', prop=Font, frameon=False)
     plt.plot([0, 1], [0, 1], '--', color='grey')
     plt.xlim([0, 1])
     plt.ylim([0, 1])
@@ -55,10 +55,10 @@ def ks(y, s1, s2, s3, s4):
 
 
 yb = r1.病理[1:]
-score1 = r1.初级医师诊断[1:]
-score2 = r1.中级医师诊断[1:]
-score3 = r1.高级医师诊断[1:]
-score4 = r1.AI诊断[1:]
+score1 = r1.初级[1:]
+score2 = r1.中级医师[1:]
+score3 = r1.高级医师[1:]
+score4 = r1.AI[1:]
 
 yb = list(map(int, yb))
 score1 = list(map(int, score1))
