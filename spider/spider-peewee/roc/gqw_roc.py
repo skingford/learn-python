@@ -5,9 +5,9 @@ import numpy as np
 from scipy.interpolate import make_interp_spline
 
 r1 = pd.read_csv(
-    r"./有无肝纤维化统计.csv",
+    r"./有无肝纤维化统计数据.csv",
     header=None,
-    names=['AI', '高级医师', '中级医师', '初级', '病理']
+    names=['初级医师诊', '中级医师诊断', '高级医师诊断', 'AI诊断', '病理']
 )
 
 
@@ -50,15 +50,15 @@ def ks(y, s1, s2, s3, s4):
 
     plt.tick_params(labelsize=15)
     plt.show()
-    fig.savefig('roc.png', dpi=120, bbox_inches='tight')
+    fig.savefig('gqw_roc.png', dpi=120, bbox_inches='tight')
     return abs(fpr1 - tpr1).max(), abs(fpr2 - tpr2).max(), abs(fpr3 - tpr3).max()
 
 
-yb = r1.病理[1:]
-score1 = r1.初级[1:]
-score2 = r1.中级医师[1:]
-score3 = r1.高级医师[1:]
-score4 = r1.AI[1:]
+yb = r1.病理[1:220]
+score1 = r1.初级医师诊[1:220]
+score2 = r1.中级医师诊断[1:220]
+score3 = r1.高级医师诊断[1:220]
+score4 = r1.AI诊断[1:220]
 
 yb = list(map(int, yb))
 score1 = list(map(int, score1))
